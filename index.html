@@ -148,11 +148,17 @@
             <a class="button">Done</a> <a class="button">Cancel</a>
           </div>
         </div>
-        <div class="collage-container">
-          <div id="collage" ondragover="event.preventDefault()">
-            <h1>Build your collage by dragging images here.</h1>
+        <div class="collage-scroll-container">
+          <div class="collage-table">
+            <div class="collage-table-cell">
+              <div id="collage" ondragover="event.preventDefault()">
+                <h1>Build your collage by dragging images here.</h1>
+              </div>
+            </div>
           </div>
-          <div class="float-menu">
+        </div>
+
+        <div class="float-menu">
             <a id="canvas-size" class="canvas-size-button">100%</a>
             <div class="canvas-size-menu" style="display:none;">
               <ul>
@@ -166,7 +172,6 @@
             </div>
             <a class="help-button">?</a>
           </div>
-        </div>
       </div>
     </main>
     <script src="main.js" type="javascript"></script>

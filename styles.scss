@@ -112,7 +112,8 @@ body {
 }
 
 #workspace {
-  flex: 1; //height
+  flex: 1 1 auto; //height
+  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -121,7 +122,6 @@ body {
 #tray {
   background-color: #293039;
   color: white;
-  height: 100%;
   width: 432px;
   position: relative;
   z-index: 30;
@@ -199,6 +199,7 @@ body {
       flex: 1 1 auto;
       width: 324px;
       height: 100%;
+      overflow-y: scroll;
       user-select: none;
       margin: -6px;
       display: flex;
@@ -230,7 +231,6 @@ body {
 
 #editor {
   flex: 1 1 auto; //width
-  height: 100%;
   overflow: hidden;
 
   display: flex;
@@ -254,69 +254,77 @@ body {
     }
   }
 
-  .collage-container {
+  .collage-scroll-container {
     flex: 1; //height
     overflow: scroll;
     width: auto;
+
+    .collage-table {
+      display: table;
+      overflow: visible;
+      width: 100%;
+      height: 100%;
+
+      .collage-table-cell {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 20px;
+      }
+    }
 
     #collage {
       width: 25cm;
       height: 20cm;
       background-color: white;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      box-shadow: 0 0 1px 0 rgba(14, 19, 24, 0.07);
-      overflow: hidden;
       margin: auto;
 
       h1 {
         text-align: center;
         font-weight: 600;
         color: rgba(14, 19, 24, 0.07);
-        margin: 20px;
+        margin: 0;
         position: relative;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
     }
+  }
 
-    .float-menu {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      font-weight: 600;
-      white-space: nowrap;
-      .canvas-size-button {
-        display: inline-block;
-        margin: 0 8px;
-        padding: 8px 16px;
-        border-radius: 16px;
-        color: #0e1318;
-        background-color: #ebeced;
-        box-shadow: 0 0 0 1px rgba(14, 19, 24, 0.07);
+  .float-menu {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+    .canvas-size-button {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 8px 16px;
+      border-radius: 16px;
+      color: #0e1318;
+      background-color: #ebeced;
+      box-shadow: 0 0 0 1px rgba(14, 19, 24, 0.07);
 
-        &:hover,
-        &:active,
-        &:focus {
-          background-color: rgba(14, 19, 24, 0.07);
-          cursor: pointer;
-        }
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba(14, 19, 24, 0.07);
+        cursor: pointer;
       }
+    }
 
-      .help-button {
-        background-color: #7d2ae8;
-        color: white;
-        display: inline-block;
-        width: 48px;
-        height: 48px;
-        border-radius: 24px;
-        line-height: 3;
-        font-size: 16px;
-        text-align: center;
-        cursor: default;
-      }
+    .help-button {
+      background-color: #7d2ae8;
+      color: white;
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      line-height: 3;
+      font-size: 16px;
+      text-align: center;
+      cursor: default;
     }
   }
 }
