@@ -203,8 +203,3 @@ Editor.prototype.onDragend = function(event) {
   });
   document.body.classList.remove("dragging");
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-  window._editor = new Editor();
-  window._editor.initialise();
-});

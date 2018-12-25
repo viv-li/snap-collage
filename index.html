@@ -19,8 +19,8 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" type="text/css" href="layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/collage.css" />
   </head>
   <body>
     <header id="brand-header">
@@ -55,7 +55,7 @@
           </svg>
         </a>
         <a class="button" href="#">File</a>
-        <a class="button icon disabled" href="#" disabled>
+        <a class="button icon" href="#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -68,7 +68,7 @@
             ></path>
           </svg>
         </a>
-        <a class="button icon" href="#" disabled>
+        <a class="button icon" href="#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -220,7 +220,8 @@
         <div class="toolbar">
           <div class="toolbar-normal">
             <div class="toolbar-left">
-              <a class="button color-picker">CP</a>
+              <a class="button color-picker"></a>
+              <a class="button spacing">Spacing</a>
             </div>
             <div class="toolbar-right">
               <div id="toolbar-layouts">
@@ -521,9 +522,9 @@
               </div>
             </div>
           </div>
-          <div class="toolbar-image" style="display:none;">
+          <!--div class="toolbar-image" style="display:none;">
             <a class="button">Done</a> <a class="button">Cancel</a>
-          </div>
+          </div-->
         </div>
         <div id="collage-scroll-container">
           <div class="collage-table">
@@ -537,7 +538,7 @@
 
         <div class="float-menu">
           <a id="canvas-size" class="canvas-size-button">100%</a>
-          <div class="canvas-size-menu" style="display:none;">
+          <!--div class="canvas-size-menu" style="display:none;">
             <ul>
               <li>100%</li>
               <li>50%</li>
@@ -546,12 +547,13 @@
               <li class="selected">Fit</li>
               <li>Fill</li>
             </ul>
-          </div>
+          </div-->
           <a class="help-button">?</a>
         </div>
       </div>
     </main>
-    <script src="collage.js"></script>
-    <script src="main.js"></script>
+    <script src="js/collage.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

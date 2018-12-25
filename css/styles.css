@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box; }
 
+/* --------Drag and drop styling-------- */
 *[draggable="true"]:hover {
   cursor: -webkit-grab;
   cursor: grab; }
@@ -21,14 +22,16 @@
     height: 100%;
     top: 0;
     left: 0;
+    pointer-events: none;
     background-color: rgba(0, 196, 204, 0.3);
-    pointer-events: none; }
+    transition: background-color 0.1s ease-in-out; }
 
 .active-drop-target * {
   pointer-events: none; }
 
 .active-drop-target[droppable="true"]:after {
-  background-color: rgba(0, 196, 204, 0.6); }
+  background-color: rgba(0, 196, 204, 0.6);
+  transition: background-color 0.1s ease-in-out; }
 
 #tray-images[droppable="true"]:before {
   position: absolute;
@@ -41,6 +44,15 @@
   bottom: 0;
   margin: auto;
   z-index: 50; }
+
+/* --------Utility classes-------- */
+@media (max-width: 879px) {
+  .is-hidden-small {
+    display: none !important; } }
+
+@media (min-width: 880px) {
+  .is-visible-small {
+    display: none !important; } }
 
 html {
   height: 100%;
@@ -55,14 +67,6 @@ body {
   flex-direction: column;
   justify-content: center;
   background-color: #ebeced; }
-
-@media (max-width: 879px) {
-  .is-hidden-small {
-    display: none !important; } }
-
-@media (min-width: 880px) {
-  .is-visible-small {
-    display: none !important; } }
 
 #brand-header {
   background: linear-gradient(90deg, #00c4cc, #7d2ae8);
@@ -161,8 +165,7 @@ body {
         cursor: default; }
       #tray .tray-nav .tray-link .tray-link-text {
         font-size: 10px;
-        display: block;
-        margin-top: 8px; }
+        display: block; }
       #tray .tray-nav .tray-link:nth-child(1) {
         background-color: #293039;
         opacity: 1; }
@@ -170,7 +173,8 @@ body {
         border-top-right-radius: 8px; }
     #tray .tray-nav .tray-nav-filler {
       flex: 1;
-      background-color: #0e1318; }
+      background-color: #0e1318;
+      opacity: 0.65; }
   #tray #tray-images {
     width: 360px;
     height: 100%;
@@ -233,23 +237,38 @@ body {
     #editor .toolbar .button {
       font-weight: 600;
       display: inline-block;
+      vertical-align: top;
       padding: 5px 7px;
       height: 30px;
-      line-height: 1.4285714286; }
+      line-height: 1.4285714286;
+      border-radius: 4px;
+      transition: background-color 0.1s linear; }
+      #editor .toolbar .button:hover, #editor .toolbar .button:focus, #editor .toolbar .button:active {
+        background-color: #dbdcdd;
+        cursor: pointer;
+        transition: background-color 0.1ms linear; }
       #editor .toolbar .button svg {
         pointer-events: none; }
+    #editor .toolbar .color-picker {
+      border-radius: 2px;
+      width: 27px;
+      height: 27px;
+      background-image: url("https://static.canva.com/web/images/788ee7a68293bd0264fc31f22c31e62d.png");
+      background-size: 100% 100%;
+      box-shadow: inset 0 0 0 1px rgba(14, 19, 24, 0.15);
+      margin: 2px 8px; }
     #editor .toolbar .button-group {
-      font-size: 0px; }
+      font-size: 0px;
+      margin: 2px 3px; }
       #editor .toolbar .button-group .button {
-        border: 1px solid #dbdcdd;
-        padding: 4px 6px;
-        margin-left: -1px; }
-        #editor .toolbar .button-group .button:hover {
-          background-color: #dbdcdd;
-          cursor: pointer; }
+        border-radius: 0;
+        box-shadow: inset 0 0 0 1px rgba(14, 19, 24, 0.15);
+        margin-left: -1px;
+        transition: background-color 0.1s linear; }
         #editor .toolbar .button-group .button:active, #editor .toolbar .button-group .button.active {
           color: white;
-          background-color: #00c4cc; }
+          background-color: #00c4cc;
+          transition: background-color 0s linear; }
       #editor .toolbar .button-group .button:nth-child(1) {
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px; }
@@ -285,7 +304,7 @@ body {
       background-color: #ebeced;
       box-shadow: 0 0 0 1px rgba(14, 19, 24, 0.07); }
       #editor .float-menu .canvas-size-button:hover, #editor .float-menu .canvas-size-button:active, #editor .float-menu .canvas-size-button:focus {
-        cursor: pointer; }
+        cursor: default; }
     #editor .float-menu .help-button {
       background-color: #7d2ae8;
       color: white;

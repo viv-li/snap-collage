@@ -1,0 +1,1 @@
+"use strict";document.addEventListener("DOMContentLoaded",function(){window._editor=new Editor,window._editor.initialise()});
