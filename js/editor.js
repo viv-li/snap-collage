@@ -141,6 +141,13 @@ Editor.prototype.onCollageDrop = function(event) {
 Editor.prototype.onCollageImageDragstart = function(event) {
   var photoIndex = this._collage.getIndexOfPhoto(event.target);
   event.dataTransfer.setData("text/plain", photoIndex.toString());
+  var imageSrc = event.target.style.backgroundImage.slice(-16, -2);
+
+  var dragImage = this._elTrayImages.querySelector(
+    'img[src="' + imageSrc + '"]'
+  );
+  event.dataTransfer.setDragImage(dragImage, 10, 10);
+
   this._wasDraggedFromTray = false;
 
   this._elCollageFrame.querySelectorAll(".photo").forEach(el => {
