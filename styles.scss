@@ -2,6 +2,59 @@
   box-sizing: border-box;
 }
 
+*[draggable="true"] {
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+* [droppable="false"] {
+  cursor: default;
+}
+
+*[droppable="true"] {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 196, 204, 0.3);
+    pointer-events: none;
+  }
+}
+
+.active-drop-target * {
+  pointer-events: none;
+}
+
+.active-drop-target[droppable="true"] {
+  &:after {
+    background-color: rgba(0, 196, 204, 0.6);
+  }
+}
+
+#tray-images[droppable="true"] {
+  &:before {
+    position: absolute;
+    content: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 3.25h2c.69 0 1.25.56 1.25 1.25V5h-4.5v-.5c0-.69.56-1.25 1.25-1.25zM6.5 5v-.5A2.5 2.5 0 0 1 9 2h2a2.5 2.5 0 0 1 2.5 2.5V5h3.375a.625.625 0 1 1 0 1.25H16V15a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6.25h-.875a.625.625 0 1 1 0-1.25H6.5zm7 1.25H5.25V15c0 .966.784 1.75 1.75 1.75h6A1.75 1.75 0 0 0 14.75 15V6.25H13.5zM8.125 8h-.25v6h1.25V8h-1zm2.75 1V8h1.25v6h-1.25V9z' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 50;
+  }
+}
+
 html {
   height: 100%;
   min-width: 432px;
@@ -170,7 +223,7 @@ body {
     }
   }
 
-  .tray-images {
+  #tray-images {
     width: 360px;
     height: 100%;
     position: absolute;
@@ -195,7 +248,7 @@ body {
       outline: none;
     }
 
-    .images-container {
+    .gallery {
       flex: 1 1 auto;
       width: 324px;
       height: 100%;
@@ -214,15 +267,6 @@ body {
         &:nth-child(4),
         &:nth-child(5) {
           height: 97px;
-        }
-
-        &:hover {
-          cursor: grab;
-        }
-
-        &:active,
-        &:focus {
-          cursor: grabbing;
         }
       }
     }
@@ -254,7 +298,7 @@ body {
     }
   }
 
-  .collage-scroll-container {
+  #collage-scroll-container {
     flex: 1; //height
     overflow: scroll;
     width: auto;
@@ -269,24 +313,6 @@ body {
         display: table-cell;
         vertical-align: middle;
         padding: 20px;
-      }
-    }
-
-    #collage {
-      width: 25cm;
-      height: 20cm;
-      background-color: white;
-      margin: auto;
-
-      h1 {
-        text-align: center;
-        font-weight: 600;
-        color: rgba(14, 19, 24, 0.07);
-        margin: 0;
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
       }
     }
   }
@@ -309,7 +335,6 @@ body {
       &:hover,
       &:active,
       &:focus {
-        background-color: rgba(14, 19, 24, 0.07);
         cursor: pointer;
       }
     }
