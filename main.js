@@ -103,7 +103,6 @@ Editor.prototype.onLayoutButtonClick = function(event) {
   );
   this._collage.setLayout(layoutIndex);
   this._updateActiveLayout(event.target.parentElement);
-  console.log(event.target, layoutIndex);
 };
 
 Editor.prototype.onTrayImageDragstart = function(event) {
@@ -183,10 +182,10 @@ Editor.prototype.onTrayDrop = function(event) {
   if (!this._wasDraggedFromTray) {
     var dragPhotoIndex = parseInt(event.dataTransfer.getData("text/plain"));
     this._collage.removePhoto(dragPhotoIndex);
+    // There's some bug where dragend doesn't fire when drop happens on tray so we call it manually.
+    this.onDragend();
+    this.updateToolbarLayouts();
   }
-
-  // There's some bug where dragend doesn't fire when drop happens on tray so we call it manually.
-  this.onDragend();
 };
 
 Editor.prototype.onDragleave = function(event) {
