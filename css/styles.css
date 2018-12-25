@@ -45,9 +45,6 @@
   padding: 6px;
   z-index: 50; }
 
-.dragImage {
-  height: 93px; }
-
 /* --------Utility classes-------- */
 @media (max-width: 879px) {
   .is-hidden-small {
@@ -232,11 +229,14 @@ body {
     padding: 8px;
     background: white;
     box-shadow: 0 1px 0 rgba(14, 19, 24, 0.15);
-    z-index: 20; }
+    z-index: 20;
+    position: relative; }
     #editor .toolbar .toolbar-left {
-      float: left; }
+      float: left;
+      white-space: nowrap; }
     #editor .toolbar .toolbar-right {
-      float: right; }
+      position: absolute;
+      right: 8px; }
     #editor .toolbar .button {
       font-weight: 600;
       display: inline-block;
@@ -262,12 +262,14 @@ body {
       margin: 2px 8px; }
     #editor .toolbar .button-group {
       font-size: 0px;
-      margin: 2px 3px; }
+      margin: 0 3px;
+      white-space: nowrap; }
       #editor .toolbar .button-group .button {
         border-radius: 0;
         box-shadow: inset 0 0 0 1px rgba(14, 19, 24, 0.15);
         margin-left: -1px;
-        transition: background-color 0.1s linear; }
+        transition: background-color 0.1s linear;
+        background-color: white; }
         #editor .toolbar .button-group .button:active, #editor .toolbar .button-group .button.active {
           color: white;
           background-color: #00c4cc;
