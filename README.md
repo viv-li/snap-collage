@@ -2,7 +2,7 @@ A drag and drop image placement prototype.
 
 # Online demo
 
-[https://github.com/viv-li/bonsai](https://github.com/viv-li/bonsai)
+[https://viv-li.github.io/snap-collage/index.html](https://viv-li.github.io/snap-collage/index.html)
 
 # Getting started
 
