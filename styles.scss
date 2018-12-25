@@ -61,6 +61,7 @@ html {
 }
 
 body {
+  margin: 0;
   height: 100%;
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
@@ -289,12 +290,54 @@ body {
     box-shadow: 0 1px 0 rgba(14, 19, 24, 0.15);
     z-index: 20;
 
+    .toolbar-left {
+      float: left;
+    }
+
+    .toolbar-right {
+      float: right;
+    }
+
     .button {
       font-weight: 600;
       display: inline-block;
       padding: 5px 7px;
       height: 30px;
       line-height: 1.4285714286;
+
+      svg {
+        pointer-events: none;
+      }
+    }
+
+    .button-group {
+      font-size: 0px;
+
+      .button {
+        border: 1px solid #dbdcdd;
+        padding: 4px 6px;
+        margin-left: -1px;
+
+        &:hover {
+          background-color: #dbdcdd;
+          cursor: pointer;
+        }
+
+        &:active,
+        &.active {
+          color: white;
+          background-color: #00c4cc;
+        }
+      }
+      .button:nth-child(1) {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+      .button:nth-last-child(1) {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-right: 1px solid #dbdcdd;
+      }
     }
   }
 

@@ -47,6 +47,7 @@ html {
   min-width: 432px; }
 
 body {
+  margin: 0;
   height: 100%;
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
@@ -225,12 +226,37 @@ body {
     background: white;
     box-shadow: 0 1px 0 rgba(14, 19, 24, 0.15);
     z-index: 20; }
+    #editor .toolbar .toolbar-left {
+      float: left; }
+    #editor .toolbar .toolbar-right {
+      float: right; }
     #editor .toolbar .button {
       font-weight: 600;
       display: inline-block;
       padding: 5px 7px;
       height: 30px;
       line-height: 1.4285714286; }
+      #editor .toolbar .button svg {
+        pointer-events: none; }
+    #editor .toolbar .button-group {
+      font-size: 0px; }
+      #editor .toolbar .button-group .button {
+        border: 1px solid #dbdcdd;
+        padding: 4px 6px;
+        margin-left: -1px; }
+        #editor .toolbar .button-group .button:hover {
+          background-color: #dbdcdd;
+          cursor: pointer; }
+        #editor .toolbar .button-group .button:active, #editor .toolbar .button-group .button.active {
+          color: white;
+          background-color: #00c4cc; }
+      #editor .toolbar .button-group .button:nth-child(1) {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px; }
+      #editor .toolbar .button-group .button:nth-last-child(1) {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-right: 1px solid #dbdcdd; }
   #editor #collage-scroll-container {
     flex: 1;
     overflow: scroll;

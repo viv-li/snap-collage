@@ -9,6 +9,8 @@ var Editor = function() {
   );
   this._wasDraggedFromTray;
   this._elCanvasSize = document.getElementById("canvas-size");
+
+  this._elToolbarLayouts = document.getElementById("toolbar-layouts");
 };
 
 Editor.prototype.initialise = function() {
@@ -53,6 +55,12 @@ Editor.prototype.initialise = function() {
   // Event listeners for whole document management of drag state indicators
   document.addEventListener("dragleave", this.onDragleave.bind(this));
   document.addEventListener("dragend", this.onDragend.bind(this));
+
+  // Layout toolbar reset and event listeners
+  this.updateToolbarLayouts();
+  this._elToolbarLayouts.querySelectorAll(".button").forEach(el => {
+    el.addEventListener("click", this.onLayoutButtonClick.bind(this));
+  });
 };
 
 Editor.prototype.fitCollage = function() {
@@ -68,6 +76,36 @@ Editor.prototype.fitCollage = function() {
   this._elCanvasSize.textContent = Math.round(scale * 100).toString() + "%";
 };
 
+Editor.prototype.updateToolbarLayouts = function() {
+  for (let el of Array.from(this._elToolbarLayouts.children)) {
+    el.style.display = "none";
+  }
+
+  if (this._collage._nPhotos >= 2) {
+    var elActiveToolbar = this._elToolbarLayouts.querySelector(
+      ".photos-" + this._collage._nPhotos.toString()
+    );
+    this._updateActiveLayout(elActiveToolbar);
+    elActiveToolbar.style.display = "block";
+  }
+};
+
+Editor.prototype._updateActiveLayout = function(elToolbar) {
+  for (let el of Array.from(elToolbar.children)) {
+    el.classList.remove("active");
+  }
+  elToolbar.children[this._collage.getCurrentLayout()].classList.add("active");
+};
+
+Editor.prototype.onLayoutButtonClick = function(event) {
+  var layoutIndex = Array.from(event.target.parentElement.children).indexOf(
+    event.target
+  );
+  this._collage.setLayout(layoutIndex);
+  this._updateActiveLayout(event.target.parentElement);
+  console.log(event.target, layoutIndex);
+};
+
 Editor.prototype.onTrayImageDragstart = function(event) {
   event.dataTransfer.setData("text/uri-list", event.target.src);
   this._wasDraggedFromTray = true;
@@ -79,8 +117,6 @@ Editor.prototype.onCollageDragover = function(event) {
   event.preventDefault();
   if (this._wasDraggedFromTray) {
     this._elCollageFrame.classList.add("active-drop-target");
-  } else {
-    console.log();
   }
 };
 
@@ -98,6 +134,8 @@ Editor.prototype.onCollageDrop = function(event) {
       this.onCollageImageDragover.bind(this)
     );
     elPhoto.addEventListener("drop", this.onCollageImageDrop.bind(this));
+
+    this.updateToolbarLayouts();
   }
 };
 
@@ -156,9 +194,7 @@ Editor.prototype.onDragleave = function(event) {
 };
 
 Editor.prototype.onDragend = function(event) {
-  console.log("Dragend");
   document.querySelectorAll(".active-drop-target").forEach(el => {
-    console.log(el);
     el.classList.remove("active-drop-target");
   });
   this._elTrayImages.setAttribute("droppable", "false");

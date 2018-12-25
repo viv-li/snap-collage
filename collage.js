@@ -10,6 +10,10 @@ var Collage = function() {
   this._collageHeight = "20cm";
 };
 
+Collage.prototype.getCurrentLayout = function() {
+  return this._layouts[this._nPhotos - 1];
+};
+
 Collage.prototype._updateLayoutClasses = function() {
   // Remove any old layout classes
   while (this._elCollage.classList.length) {
@@ -22,7 +26,7 @@ Collage.prototype._updateLayoutClasses = function() {
       "photos-" + this._photoURLs.length.toString()
     );
     this._elCollage.classList.add(
-      "layout-" + this._layouts[this._nPhotos - 1].toString()
+      "layout-" + this.getCurrentLayout().toString()
     );
   }
 };
